@@ -46,7 +46,7 @@ def _compute_otsu_criteria(im, th, otsu_type):
         raise RuntimeError('Invalid otsu_type.')
 
 
-def otsu(img: np.ndarray, criteria_type: OtsuType = OtsuType.improved) -> int:
+def threshold_otsu(img: np.ndarray, criteria_type: OtsuType = OtsuType.classic) -> int:
     threshold_range = range(np.max(img) + 1)
     criterias = [_compute_otsu_criteria(img, th, criteria_type) for th in threshold_range]
     return threshold_range[np.argmin(criterias)]

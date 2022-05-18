@@ -99,9 +99,14 @@ def _mean_std(image, w):
     g2 /= total_window_size
 
     s = np.sqrt(np.clip(g2 - m * m, 0, None))
+    print(total_window_size)
     return m, s
 
 
 def threshold_niblack(image, window_size=15, k=0.2):
     m, s = _mean_std(image, window_size)
     return m - k * s
+
+def threshold_niblack_const(image, window_size=15, k=0.2, c=0.0):
+    m, s = _mean_std(image, window_size)
+    return m - k * s - c
